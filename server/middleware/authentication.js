@@ -1,11 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const privateKey = "Lkjhgfdsa";
-
 function authentication(req,res,next){
     const token = req.headers.token.split(" ")[1]; //Bearer token
     if(token){
-        jwt.verify(token, privateKey,(err, decoded)=>{
+        jwt.verify(token, process.env.JWT_SECRET,(err, decoded)=>{
             if(err){
                 res.json({message: "Unauthorised token."})
             }else{
@@ -21,5 +19,4 @@ function authentication(req,res,next){
 module.exports = {
     jwt,
     authentication,
-    privateKey
 }

@@ -4,7 +4,8 @@ const userRoute = require('./routes/user');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { authentication } = require('./middleware/authentication');
-
+const dotenv = require('dotenv');
+dotenv.config();
 const app = express();
 
 const port = 3000;
@@ -23,7 +24,7 @@ app.listen(port,()=>{
     console.log(`Listening on port: ${port}`)
 })
 
-mongoose.connect('mongodb+srv://mahafujul:Loveyou2%40@cluster0.mkfvbr8.mongodb.net/curobrain?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
+mongoose.connect(process.env.MONGO_URL,{useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
     console.log('Connection to mongoDB database successfully establish')
 }).catch((err)=>{
     console.log(err)

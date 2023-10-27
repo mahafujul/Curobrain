@@ -1,5 +1,5 @@
 const express = require('express');
-const {jwt, authentication, privateKey} = require('../middleware/authentication');
+const { jwt, authentication } = require('../middleware/authentication');
 const bodyParser = require('body-parser');
 const {Admin, Course} = require('../db/index');
 const cors = require('cors');
@@ -33,7 +33,7 @@ route.post('/login',async (req,res)=>{
     try{
         const isAdminThere = await Admin.findOne({username,password});
         if(isAdminThere){
-            const token = jwt.sign({data: username}, privateKey, {expiresIn: '1h'})
+            const token = jwt.sign({data: username}, process.env.JWT_SECRET, {expiresIn: '1h'})
             res.json({message:"You have successfully loged in.", username, token})
         }else{
             res.json({message: "Please check your username and password."})

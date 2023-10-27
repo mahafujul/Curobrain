@@ -1,7 +1,7 @@
 const express = require('express');
 
 const {User, Course} = require('../db/index');
-const {jwt, privateKey, authentication} = require('../middleware/authentication')
+const {jwt, authentication} = require('../middleware/authentication')
 
 const route = express.Router();
 
@@ -25,7 +25,7 @@ route.post('/login',async(req,res)=>{
     const {username, password} = req.body;
     const isUserExist = await User.findOne({username,password});
     if(isUserExist){
-        const token = jwt.sign({data:username}, privateKey, {expiresIn:'1h'});
+        const token = jwt.sign({data:username}, process.env.JWT_SECRET, {expiresIn:'1h'});
         res.json({message:"You have loged is successfully.",token})
     }else{
         res.json({message:"Please check username and password.."})
