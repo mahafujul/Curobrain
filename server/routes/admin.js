@@ -15,12 +15,17 @@ route.post('/signup',async (req,res)=>{
     //logic to ceate new admin
     const {username, password} = req.body;
     if(username&&password){
-        const admin = new Admin({username,password});
-        try{
-            await admin.save();
-            res.json({message: "Admin created successfuly.", username});
-        }catch{
-            res.json({message: "There is some error in admin creation", username})
+        const isAdminExist = await Admin.findOne({username});
+        if(!isAdminExist){
+            const admin = new Admin({username,password});
+            try{
+                await admin.save();
+                res.json({message: "Admin created successfuly.", username});
+            }catch{
+                res.json({message: "There is some error in admin creation", username})
+            }
+        }else{
+            res.json({message: "Username is already taken please try with another one."});
         }
     }else{
         res.json({message: "Please enter a valid username & password"});
