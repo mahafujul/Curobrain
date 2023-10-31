@@ -91,8 +91,8 @@ route.put('/course/:courseId', authentication, async (req, res)=>{
     try{
         const courseId = req.params.courseId;
         const updatedCourse = req.body;
-        await Course.findByIdAndUpdate(courseId, updatedCourse);
-        res.json({message:"Course updated successfully...", id: courseId})
+        const UpCourse = await Course.findByIdAndUpdate(courseId, updatedCourse);
+        res.json({message:"Course updated successfully...", id: courseId, course: UpCourse})
     }catch(err){
         console.log(err);
     }
