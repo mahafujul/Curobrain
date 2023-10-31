@@ -1,9 +1,7 @@
-import { useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Appbar from './components/Appbar'
-import Signin from './components/Signin'
-import Signup from './components/Signup'
-import Courses from './components/Courses'
+import {Appbar, Signin, Signup, Courses, AddCourse, Course, Landing, EditCourse} from './components/index'
+
 function App() {
  
   return (
@@ -14,9 +12,12 @@ function App() {
       <Router>
         <Appbar/>
         <Routes>
-          <Route path={'/'} element={<Signin/>}></Route>
+          <Route path={'/'} element={<Landing/>}></Route>
           <Route path={'/signup'} element={<Signup/>}></Route>
+          <Route path={'/signin'} element={<Signin/>}></Route>
           <Route path={'/courses'} element={<Courses/>}></Route>
+          <Route path={'/addCourse'} element={<AddCourse/>}></Route>
+          <Route path={'/course/:courseId'} element={<EditCourse/>}></Route>
         </Routes>
       </Router>
     </div>
