@@ -25,17 +25,20 @@ function Appbar(){
         return(
            <div style={{display:'flex', justifyContent:'space-between',padding:10,zIndex:1}}>
                 <div style={{marginLeft:10,cursor:"pointer"}} onClick={()=>{navigate('/')}}>
-                    <Typography variant='h6'>Curobrain</Typography>
+                    <Typography variant='h5'>Curobrain</Typography>
                 </div>
                 <div>
                     <Button style={{marginRight:20}} variant="contained" disabled>{username}</Button>
-                    <Button style={{marginRight:20}} variant="contained">Add Course</Button>
+                    <Button style={{marginRight:20}} variant="contained" onClick={()=>{
+                        navigate('/addCourse');
+                    }}>Add Course</Button>
                     <Button style={{marginRight:20}} variant="contained" onClick={()=>{
                         navigate('/courses');
                     }}>Courses</Button>
                     <Button variant="contained" onClick={()=>{
                         localStorage.removeItem('token')
                         setUsername('');
+                        navigate('/')
                     }}>Logout</Button>
                 </div>
            </div>
@@ -47,8 +50,8 @@ function Appbar(){
                     <Typography variant='h6'>Curobrain</Typography>
                 </div>
                 <div>
-                    <Button style={{marginRight:20}} variant="contained" onClick={()=>{location='/'}}>login</Button>
-                    <Button variant="contained" onClick={()=>{location='/signup'}}>Signup</Button>
+                    <Button style={{marginRight:20}} variant="contained" onClick={()=>{navigate('/signin')}}>login</Button>
+                    <Button variant="contained" onClick={()=>{navigate('/signup')}}>Signup</Button>
                 </div>
             </div>
         )
