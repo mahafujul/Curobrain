@@ -5,31 +5,33 @@ import { useNavigate } from 'react-router-dom';
 function Course({imgUrl, title, description, price, id}){
   const navigate = useNavigate();
     return(
-    <Card>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image={imgUrl}
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button onClick={()=>{
-          navigate(`/course/${id}`);
-        }} size="small" color="primary">
-          Edit
-        </Button>
-      </CardActions>
-    </Card>
+      <div>
+        <CardActionArea>
+          <CardContent>
+            <Typography style={{color:'black'}} variant="h6" component="div">
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {description}
+            </Typography>
+          </CardContent>
+          <CardMedia
+            component="img"
+            height="140"
+            image={imgUrl}
+            alt={title}
+          />
+        </CardActionArea>
+        <div style={{display:'flex', justifyContent:'center', marginTop:15}}>
+          <CardActions>
+            <Button variant='contained' onClick={()=>{
+              navigate(`/course/${id}`);
+            }} size="small" color="primary">
+              Edit
+            </Button>
+          </CardActions>
+        </div>
+      </div>
     )
 }
 

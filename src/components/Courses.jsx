@@ -29,12 +29,12 @@ function Courses(){
         })
     },[])
     return(
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12, lg:12}}>
+        <Grid style={{padding:30, display:'flex', justifyContent:'center'}} container spacing={{ xs: 2, md: 3 }} columns={{ xs: 2, sm: 8, md: 12, lg:12}}>
             {
                 courses.map((course)=>{
                     return(
                         <Grid item xs={2} sm={4} md={3} lg={2} key={course._id}>
-                            <Item>
+                            <Item style={{width:280, height:350}}>
                                 <Course imgUrl={course.imgUrl} title={course.title} description={course.description} price={course.price} id={course._id}></Course>
                             </Item>   
                         </Grid>
