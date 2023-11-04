@@ -1,7 +1,14 @@
 import { TextField,Button,Card,Typography } from "@mui/material";
 import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { userState } from "../store/atoms/user";
+
 function Signin(){
+    // Here beow we are using recoil
+    const setUser = useSetRecoilState(userState) //userSate is an atom
+    // It's a setter function to the userState variable, as we are updating this variable after successfully login those components are subscribed to it will rerender. 
+    // (Here in our case it will AppBar component) 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -32,9 +39,9 @@ function Signin(){
                             return res.json();
                         }).then((data)=>{
                             localStorage.setItem('token', 'Bearer '+data.token);
-                            alert(data.message)
+                            setUser({userEmail: data.username, isLoading: false})
                             navigate('/courses')
-                            location.reload();
+                            // location.reload(); for using of recoil ***atom***/state variable now we do not have to reload our page manually to send a 'GET' request to show the appBar based on the condition.
                         })
                     }}>login</Button>
                 </div>
