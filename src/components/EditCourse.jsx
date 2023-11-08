@@ -1,11 +1,10 @@
 import React,{useState,useEffect} from 'react'
-import {Typography,Card,FormGroup, FormControlLabel,Button,TextField,Switch,CardMedia,CardActionArea,CardContent} from '@mui/material'
+import {Typography,Card,FormGroup, FormControlLabel,Button,TextField,Switch,CardMedia,CardActionArea,CardContent,Grid,Box} from '@mui/material'
+
 import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState,useRecoilState,useRecoilValue } from 'recoil';
+
 import { courseState } from '../store/atoms/course';
-import { useRecoilValue } from 'recoil';
-import { useRecoilState } from 'recoil';
 import { courseDescription, courseImg, courseIsLoading, courseTitle } from '../store/selectors/course';
 
 function EditCourse(){
@@ -38,24 +37,28 @@ function EditCourse(){
     }
 
     return(
-        <div>
+        <Box>
             <GrayTopper/>
-            <div style={{marginTop:-50, marginLeft:200, display:'flex'}}>
-                <UpdateCard/>
-                <CourseCard/>
-            </div>
-        </div>
+            <Grid container spacing={2} sx={{marginTop:{xs:'100px', md:'0px', lg:'0px'}}}>
+                <Grid sx={{display:'flex', justifyContent:'center', marginTop:{lg:'-40px',sm:'-160px', md:'-70px', xs:'-40px'}}} item xs={12} md={12} lg={6}>
+                    <UpdateCard/>
+                </Grid>
+                <Grid sx={{display:'flex', justifyContent:'center', marginTop: {lg:'-60px',md:'-60px', xs:'-50px'}}} item xs={12} md={12} lg={6}>
+                    <CourseCard/>
+                </Grid>
+            </Grid>
+        </Box>
     )
 }
 
 function GrayTopper(){
     const title = useRecoilValue(courseTitle)
     return(
-        <div>
-            <div style={{backgroundColor:'#212121', display:'flex', justifyContent:'center', height:250, width:'100vw'}}>
-                <Typography style={{color: 'white', marginTop:90, fontWeight:600}} variant='h3'>{title}</Typography>
-            </div>
-        </div>
+        <Box sx={{marginTop:{lg:'65px',sm:'57px'}, display:{xs:'none',sm:'block', lg:'block', md:'block'}}}>
+            <Box sx={{backgroundColor:'#212121', display:'flex', justifyContent:'center', height:'250px', width:'100vw', padding:{lg:'100px',sm:'90px',md:'100px'}}}>
+                <Typography sx={{color: 'white', fontWeight:'600', fontSize:{lg:'48px', sm:'35px'}}} variant='h3'>{title}</Typography>
+            </Box>
+        </Box>
     )
 }
 
@@ -71,7 +74,7 @@ function UpdateCard(){
     // Course state--End
 
     return(
-        <Card style={{width:500, height:400, padding:20}}>
+        <Card sx={{width:'500px', height:'450px', padding:'20px', margin:{xs:'15px',sm:'0px', md:'0px', lg:'0px'}}}>
             <div>
                 <TextField value={title} onChange={(e)=>{setTitle(e.target.value)}} fullWidth id="outlined-basic" label="Title"></TextField>
             </div>
@@ -128,7 +131,7 @@ function CourseCard(){
     const description = useRecoilValue(courseDescription)
     const imgUrl = useRecoilValue(courseImg)
     return(
-        <Card style={{marginTop:-30, marginLeft:700, borderRadius:15, width:300, height:300}}>
+        <Card style={{borderRadius:15, width:300, height:300}}>
             <CardActionArea>
                 <CardMedia
                 component="img"

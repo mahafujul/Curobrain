@@ -1,51 +1,60 @@
 import React from 'react'
-import { Typography,Button } from '@mui/material';
+import { Typography,Button,Grid, Box} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userEmailState } from '../store/selectors/userEmail';
+
+
+
 function Landing(){
     const navigate = useNavigate()
     const username = useRecoilValue(userEmailState)
     if(username){
         return (
-            <div style={{display:'flex', justifyContent:'center', width:'100vw'}}>
-                <div style={{width:'50vw', marginLeft:100, marginTop:330,textAlign:'center'}}>
-                    <div>
+            <Grid container sx={{bgcolor:'#eeeeee', display:'flex', justifyContent:'center'}}>
+                <Grid item xs={12} md={6} lg={6}>
+                    <Box sx={{width:'50vw', marginLeft:'100px', marginTop:'300px',textAlign:'center'}}>
                         <Typography variant='h2'>Curobrain Admin</Typography>
                         <Typography style={{marginTop:-10}} variant='h5'>A place to learn, earn and grow</Typography>
-                    </div>
-                </div>
-                <div style={{width:'50vw', display:'flex', justifyContent:'center', marginTop:150}}>
-                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/login-here-2161443-1815085.png" alt="" />
-                </div>
-            </div>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} md={6} lg={6}>
+                    <Box sx={{width:'50vw', display:'flex', justifyContent:'center', marginTop:'150px'}}>
+                        <img src="https://cdni.iconscout.com/illustration/premium/thumb/login-here-2161443-1815085.png" alt="" />
+                    </Box>
+                </Grid>
+            </Grid> 
         )
     }
-    return( 
-        <div style={{display:'flex', justifyContent:'center', width:'100vw'}}>
-            <div style={{width:'50vw', marginLeft:100, marginTop:300,textAlign:'center'}}>
-                <div>
-                    <Typography variant='h2'>Curobrain Admin</Typography>
-                    <Typography style={{marginTop:-10}} variant='h5'>A place to learn, earn and grow</Typography>
-                </div>
-                <div style={{display:'flex',justifyContent:'center', gap:10, marginTop:30}}>
-                    <div>
-                        <Button onClick={()=>{
-                            navigate('/signin')
-                        }} variant="contained">Signin</Button>
-                    </div>
-                    <div>
-                        <Button onClick={()=>{
-                            navigate('/signup')
-                        }} variant="contained">Signup</Button>
-                    </div>
-                </div>
-            </div>
-            <div style={{width:'50vw', display:'flex', justifyContent:'center', marginTop:150}}>
-                <img src="https://cdni.iconscout.com/illustration/premium/thumb/login-here-2161443-1815085.png" alt="" />
-            </div>
-        </div>
-    )
+    return(
+        <Grid container sx={{paddingTop:{md: '400px', xs: '140px', lg: '400px'}}}>
+            <Grid item xs={12} md={6} lg={6}>
+                <Box sx={{width:{lg: '50vw'}, marginLeft:{lg: '100px'}}}>
+                    <Box sx={{textAlign:'center'}}>
+                        <Typography variant='h2' sx={{fontSize:{xs: '45px', md: '60px', lg: '60px'}}}>Curobrain Admin</Typography>
+                        <Typography sx={{fontSize:{xs: '20px',md: '24px', lg: '24px'}, marginTop:{sx:'40px', lg:'-10px'}}} variant='h5'>A place to learn, earn and grow</Typography>
+                    </Box>
+                    <Box sx={{display:'flex',justifyContent:'center', gap:'10px', marginTop:{md: '15px',lg: '15px', xs: '20px'}, textAlign:'center'}}>
+                        <div>
+                            <Button onClick={()=>{
+                                navigate('/signin')
+                            }} variant="contained">Signin</Button>
+                        </div>
+                        <div>
+                            <Button onClick={()=>{
+                                navigate('/signup')
+                            }} variant="contained">Signup</Button>
+                        </div>
+                    </Box>
+                </Box>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+                <Box sx={{width:{lg: '50vw'}, display:'flex', justifyContent:'center', marginTop:{lg: '-150px',md: '300px', xs: '40px'}}}>
+                    <img className='heroImg' src="https://cdni.iconscout.com/illustration/premium/thumb/login-here-2161443-1815085.png" alt="" />
+                </Box>
+            </Grid>
+        </Grid> 
+    )   
 }
 
 export default Landing;

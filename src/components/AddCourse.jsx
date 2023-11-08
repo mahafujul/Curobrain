@@ -1,5 +1,5 @@
-import { Card,TextField,Button,FormGroup,FormControlLabel,Switch } from '@mui/material';
-import React,{useState} from 'react'
+import React,{useState} from 'react';
+import { Card,TextField,Button,FormGroup,FormControlLabel,Switch,Box } from '@mui/material';
 
 
 function AddCourse(){
@@ -29,8 +29,8 @@ function AddCourse(){
     }
 
     return(
-        <div style={{display:'flex', justifyContent:'center', marginTop:200}}>
-            <Card style={{width:500, height:400, padding:20}}>
+        <Box sx={{display:'flex', justifyContent:'center', marginTop:{xs:'100px', sm:'200px', md:'200px', lg:'200px'}, padding:'20px'}}>
+            <Card style={{width:'500px', height:'450px',padding:'20px'}}>
                 <div>
                     <TextField onChange={(e)=>{setTitle(e.target.value)}} fullWidth id="outlined-basic" label="Title" variant="outlined"></TextField>
                 </div>
@@ -52,7 +52,7 @@ function AddCourse(){
                     <Button onClick={submitHandler} size="medium" variant="contained">Add Course</Button>
                 </div>
             </Card>
-        </div>
+        </Box>
     )
 }
 
