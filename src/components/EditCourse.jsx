@@ -6,6 +6,7 @@ import { useSetRecoilState,useRecoilState,useRecoilValue } from 'recoil';
 
 import { courseState } from '../store/atoms/course';
 import { courseDescription, courseImg, courseIsLoading, courseTitle } from '../store/selectors/course';
+import { useRef } from 'react';
 
 function EditCourse(){
     const id = useParams('courseId');
@@ -33,7 +34,9 @@ function EditCourse(){
     },[])
 
     if(isLoading){
-        <div></div>
+        return(
+            <></>
+        )
     }
 
     return(
@@ -65,6 +68,7 @@ function GrayTopper(){
 function UpdateCard(){
     const [courseDetails, setCourse] = useRecoilState(courseState)
     console.log(courseDetails.course)
+
     // Course state--Start
     const [title, setTitle] = useState(courseDetails.course.title)
     const [description, setDescription] = useState(courseDetails.course.description);

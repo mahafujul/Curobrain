@@ -1,8 +1,11 @@
 import React from 'react'
 import { Card,CardActionArea,CardMedia,CardContent,Typography,CardActions,Button } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { courseState } from '../store/atoms/course';
 
 function Course({imgUrl, title, description, price, id}){
+  const setCourse = useSetRecoilState(courseState)
   const navigate = useNavigate();
     return(
       <Card sx={{ maxWidth: '345px', height:'350px' }}>
@@ -25,6 +28,7 @@ function Course({imgUrl, title, description, price, id}){
         <div style={{marginTop:15, display:'flex', justifyContent:'center'}}>
           <CardActions>
             <Button variant="contained" color="primary" onClick={()=>{
+              setCourse({course:{}, isLoading:true})
               navigate(`/course/${id}`);
             }} size="small">
               Edit
