@@ -27,7 +27,7 @@ function Landing(){
         )
     }
     return(
-        <Grid container sx={{paddingTop:{md: '400px', xs: '140px', lg: '400px'}}}>
+        <Grid container sx={{paddingTop:{md: '400px', xs: '140px', lg: '300px', xl: '400px'}, height: '100vh'}}>
             <Grid item xs={12} md={6} lg={6}>
                 <Box sx={{width:{lg: '50vw'}, marginLeft:{lg: '100px'}}}>
                     <Box sx={{textAlign:'center'}}>

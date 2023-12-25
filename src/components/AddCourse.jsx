@@ -29,7 +29,7 @@ function AddCourse(){
     }
 
     return(
-        <Box sx={{display:'flex', justifyContent:'center', marginTop:{xs:'100px', sm:'200px', md:'200px', lg:'200px'}, padding:'20px'}}>
+        <Box sx={{display:'flex', justifyContent:'center', marginTop:{xs:'100px', sm:'200px', md:'200px', lg:'150px', xl:'200px'}, padding:'20px'}}>
             <Card style={{width:'500px', height:'450px',padding:'20px'}}>
                 <div>
                     <TextField onChange={(e)=>{setTitle(e.target.value)}} fullWidth id="outlined-basic" label="Title" variant="outlined"></TextField>

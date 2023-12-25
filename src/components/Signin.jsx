@@ -13,7 +13,7 @@ function Signin(){
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     return(
-        <Box sx={{display:'flex', justifyContent:'center',paddingTop:{xs: '200px', md: '300px', lg: '300px'}}}>
+        <Box sx={{display:'flex', justifyContent:'center',paddingTop:{xs: '200px', md: '300px', lg: '200px', xl:'300px'}, height:'100vh'}}>
             <Card sx={{width:{lg:'400px',md:'400px',xs:'350px'}, height:{lg: '320px', md:'320px', xs:'300px'}, padding:'20px'}}>
                 <Box sx={{display:'flex', justifyContent:'center',paddingTop:{lg:'15px',md:'15px'} }}>
                     <Typography sx={{fontWeight:'600', fontSize:{lg:'1.5rem',md:'1.5rem',xs:'1.3rem'}, lineHeight:{lg:'1.334', md:'1.334',xs:'2.334'}}} variant="h5">Welcome back, Please Sign In</Typography>
