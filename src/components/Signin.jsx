@@ -26,7 +26,7 @@ function Signin(){
                 </Box>
                 <div style={{display:'flex', justifyContent:'center', marginTop:30}}>
                     <Button size="medium" variant="contained" onClick={()=>{
-                        fetch('http://localhost:3000/admin/login',{
+                        fetch(`${import.meta.env.VITE_BASE_URL}/admin/login`,{
                             method: "POST",
                             body : JSON.stringify({
                                 username,

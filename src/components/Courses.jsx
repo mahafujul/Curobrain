@@ -7,8 +7,9 @@ import {Course} from '../components/index'
 
 function Courses(){
     const [courses, setCourses] = useState([]);
+    console.log(import.meta.env.BASE_URL)
     useEffect(()=>{
-        fetch('http://localhost:3000/admin/courses',{
+        fetch(`${import.meta.env.VITE_BASE_URL}/admin/courses`,{
             method: "GET",
             headers:{
                 "token": localStorage.getItem('token')

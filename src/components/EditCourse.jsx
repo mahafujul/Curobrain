@@ -15,7 +15,7 @@ function EditCourse(){
 
     const isLoading = useRecoilValue(courseIsLoading)
     useEffect(()=>{
-        fetch(`http://localhost:3000/admin/course/${id.courseId}`,{
+        fetch(`${import.meta.env.VITE_BASE_URL}/admin/course/${id.courseId}`,{
             methid: 'GET',
             headers:{
                 'token': localStorage.getItem('token')
@@ -67,7 +67,6 @@ function GrayTopper(){
 
 function UpdateCard(){
     const [courseDetails, setCourse] = useRecoilState(courseState)
-    console.log(courseDetails.course)
 
     // Course state--Start
     const [title, setTitle] = useState(courseDetails.course.title)
@@ -98,7 +97,7 @@ function UpdateCard(){
             </div>
             <div style={{display:'flex', justifyContent:'center', marginTop:20}}>
                 <Button size="medium" variant="contained" onClick={async ()=>{
-                    const response = await fetch(`http://localhost:3000/admin/course/${courseDetails.course._id}`,{
+                    const response = await fetch(`${import.meta.env.VITE_BASE_URL}/admin/course/${courseDetails.course._id}`,{
                         method: "PUT",
                         body: JSON.stringify({
                             title,

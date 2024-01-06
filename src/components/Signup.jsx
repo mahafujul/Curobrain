@@ -19,7 +19,7 @@ function Signup(){
                 <div style={{marginTop: 30, display:'flex', justifyContent:'center'}}>
                    <Button onClick={async ()=>{
                         try{
-                            const response = await fetch('http://localhost:3000/admin/signup',{
+                            const response = await fetch(`${import.meta.env.VITE_BASE_URL}/admin/signup`,{
                                 method: "POST",
                                 body: JSON.stringify({
                                     username,

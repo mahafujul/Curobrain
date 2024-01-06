@@ -10,7 +10,7 @@ function AddCourse(){
     const [published, setPublished] = useState(false);
 
     const submitHandler = async ()=> {
-        const response = await fetch('http://localhost:3000/admin/course',{
+        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/admin/course`,{
             method: "POST",
             body: JSON.stringify({
                 title,
