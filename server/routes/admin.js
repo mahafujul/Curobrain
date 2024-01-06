@@ -75,7 +75,7 @@ route.get('/courses',authentication, async (req, res)=>{
 })
 
 
-route.get('/course/:courseId',async (req,res)=>{
+route.get('/course/:courseId',authentication, async (req,res)=>{
     //logic to get a single course.
     const courseId = req.params.courseId;
     const course = await Course.findOne({_id:courseId}); //findById(courseId)
