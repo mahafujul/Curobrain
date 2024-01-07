@@ -3,7 +3,7 @@ import { Typography,Button,Grid, Box} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userEmailState } from '../store/selectors/userEmail';
-
+import Footer from './Footer';
 
 
 function Landing(){
@@ -11,19 +11,21 @@ function Landing(){
     const username = useRecoilValue(userEmailState)
     if(username){
         return (
-            <Grid container sx={{bgcolor:'#eeeeee', display:'flex', justifyContent:'center'}}>
+            <Grid container sx={{paddingTop:{md: '400px', xs: '140px', lg: '300px', xl: '400px'}, height: '100vh'}}>
                 <Grid item xs={12} md={6} lg={6}>
-                    <Box sx={{width:'50vw', marginLeft:'100px', marginTop:'300px',textAlign:'center'}}>
-                        <Typography variant='h2'>Curobrain Admin</Typography>
-                        <Typography style={{marginTop:-10}} variant='h5'>A place to learn, earn and grow</Typography>
+                    <Box sx={{width:{lg: '50vw'}, marginLeft:{lg: '100px'}}}>
+                        <Box sx={{textAlign:'center'}}>
+                            <Typography variant='h2' sx={{fontSize:{xs: '45px', md: '60px', lg: '60px'}}}>Curobrain Admin</Typography>
+                            <Typography sx={{fontSize:{xs: '20px',md: '24px', lg: '24px'}, marginTop:{sx:'40px', lg:'-10px'}}} variant='h5'>A place to learn, earn and grow</Typography>
+                        </Box>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
-                    <Box sx={{width:'50vw', display:'flex', justifyContent:'center', marginTop:'150px'}}>
-                        <img src="https://cdni.iconscout.com/illustration/premium/thumb/login-here-2161443-1815085.png" alt="" />
+                    <Box sx={{width:{lg: '50vw'}, display:'flex', justifyContent:'center', marginTop:{lg: '-150px',md: '300px', xs: '40px'}}}>
+                        <img className='heroImg' src="https://cdni.iconscout.com/illustration/premium/thumb/login-here-2161443-1815085.png" alt="" />
                     </Box>
                 </Grid>
-            </Grid> 
+            </Grid>  
         )
     }
     return(
