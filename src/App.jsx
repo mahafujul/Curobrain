@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import {Appbar, Signin, Signup, Courses, AddCourse, Course, Landing, EditCourse} from './components/index'
+import {Appbar, Signin, Signup, Courses, AddCourse, Course, Landing, EditCourse,Footer} from './components/index'
 import { RecoilRoot,useSetRecoilState } from 'recoil'
 import { userState } from './store/atoms/user'
 function App() {
@@ -22,6 +22,7 @@ function App() {
             <Route path={'/addCourse'} element={<AddCourse/>}></Route>
             <Route path={'/course/:courseId'} element={<EditCourse/>}></Route>
           </Routes>
+          <Footer/>
         </Router>
       </RecoilRoot>
     </div>

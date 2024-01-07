@@ -6,4 +6,5 @@ import Landing from './Landing'
 import Signin from './Signin'
 import Signup from './Signup'
 import EditCourse from './EditCourse'
-export {Appbar, AddCourse, Course, Courses, Landing, Signin, Signup, EditCourse}
+import Footer from './Footer'
+export {Appbar, AddCourse, Course, Courses, Landing, Signin, Signup, EditCourse, Footer}
