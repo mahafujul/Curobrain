@@ -1,10 +1,10 @@
 import express from 'express';
 import adminRoute from './routes/admin';
 import userRoute from './routes/user';
-import mongoose from 'mongoose';
 import cors from 'cors';
 import authentication from './middleware/authentication';
 import dotenv from 'dotenv';
+import { connectDB } from './db/connect';
 
 dotenv.config();
 const app = express();
@@ -25,8 +25,5 @@ app.listen(port,()=>{
     console.log(`Listening on port: ${port}`)
 })
 
-mongoose.connect(`${process.env.MONGO_URL}`,{dbName: 'curobrain'}).then(()=>{
-    console.log('Connection to mongoDB database successfully establish')
-}).catch((err)=>{
-    console.log(err)
-})
+//Connect with database
+connectDB();
