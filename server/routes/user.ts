@@ -1,7 +1,8 @@
-const express = require('express');
-
-const {User, Course} = require('../db/index');
-const {jwt, authentication} = require('../middleware/authentication')
+// const express = require('express');
+import express from 'express'
+import jwt from 'jsonwebtoken'
+import {User, Course} from '../db/index';
+import authentication from '../middleware/authentication'
 
 const route = express.Router();
 
@@ -25,7 +26,7 @@ route.post('/login',async(req,res)=>{
     const {username, password} = req.body;
     const isUserExist = await User.findOne({username,password});
     if(isUserExist){
-        const token = jwt.sign({data:username}, process.env.JWT_SECRET, {expiresIn:'1h'});
+        const token = jwt.sign({data:username}, `${process.env.JWT_SECRET}`, {expiresIn:'1h'});
         res.json({message:"You have loged is successfully.",token})
     }else{
         res.json({message:"Please check username and password.."})
@@ -35,7 +36,10 @@ route.post('/login',async(req,res)=>{
 route.get('/courses',authentication, async(req, res)=>{
     //logic to get all purchased courses
     try{
-        const user = await User.findOne({username: req.username}).populate('purchasedCourses'); //This populate function fetches the actual data from the given reference.
+        const user = await User.findOne({username: req.headers.username}).populate('purchasedCourses'); //This populate function fetches the actual data from the given reference.
+        if(!user){
+            return res.sendStatus(404);
+        }
         res.json({message: "These all are the courses that you are already enrolled in..",courses: user.purchasedCourses});
     }catch(err){
         res.json({message: "Someting went wrong.."})
@@ -59,7 +63,7 @@ route.post('/course/:courseId',authentication, async(req,res)=>{
     const isCourseExist = await Course.findOne({_id: courseId});
     // if the course exist control will go inside if statement otherwise will go inside the else statement.
     if(isCourseExist){
-        const user = await User.findOne({username: req.username});
+        const user = await User.findOne({username: req.headers.username});
         if(user){
             user.purchasedCourses.push(isCourseExist._id);
             // await User.findOneAndUpdate({username: req.username},{ $set: {purchasedCourses: user.purchasedCourses} },{ new: true })
@@ -84,4 +88,4 @@ route.get('/course/:courseId',authentication, async (req, res)=>{
     }
 })
 
-module.exports = route;
+export default route;

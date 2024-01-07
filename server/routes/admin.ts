@@ -1,8 +1,9 @@
-const express = require('express');
-const { jwt, authentication } = require('../middleware/authentication');
+import express from 'express'
+import jwt from 'jsonwebtoken'
+import authentication from'../middleware/authentication';
+import {Admin, Course} from '../db/index';
+import cors from 'cors';
 const bodyParser = require('body-parser');
-const {Admin, Course} = require('../db/index');
-const cors = require('cors');
 
 const route = express.Router();
 route.use(cors())
@@ -13,7 +14,7 @@ route.use(bodyParser.json());
 
 route.post('/signup',async (req,res)=>{
     //logic to ceate new admin
-    const {username, password} = req.body;
+    const {username, password} = req.body ;
     if(username&&password){
         const isAdminExist = await Admin.findOne({username});
         if(!isAdminExist){
@@ -38,7 +39,7 @@ route.post('/login',async (req,res)=>{
     try{
         const isAdminThere = await Admin.findOne({username,password});
         if(isAdminThere){
-            const token = jwt.sign({data: username}, process.env.JWT_SECRET, {expiresIn: '1h'})
+            const token = jwt.sign({data: username}, `${process.env.JWT_SECRET}`, {expiresIn: '1h'})
             res.json({message:"You have successfully loged in.", username, token})
         }else{
             res.json({message: "Please check your username and password."})
@@ -111,4 +112,4 @@ route.delete('/course/:courseId',authentication, async (req, res)=>{
 })
 
 
-module.exports = route;
+export default route;

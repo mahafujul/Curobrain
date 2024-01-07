@@ -1,10 +1,11 @@
-const express = require('express');
-const adminRoute = require('./routes/admin');
-const userRoute = require('./routes/user');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const { authentication } = require('./middleware/authentication');
-const dotenv = require('dotenv');
+import express from 'express';
+import adminRoute from './routes/admin';
+import userRoute from './routes/user';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import authentication from './middleware/authentication';
+import dotenv from 'dotenv';
+
 dotenv.config();
 const app = express();
 
@@ -17,14 +18,14 @@ app.use(cors())
 //we are passing a path and a function/method as arguments on the above method call.
 
 app.get('/me',authentication, (req, res)=>{
-    res.json({username: req.username});
+    res.json({username: req.headers.username});
 })
 
 app.listen(port,()=>{
     console.log(`Listening on port: ${port}`)
 })
 
-mongoose.connect(process.env.MONGO_URL,{useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
+mongoose.connect(`${process.env.MONGO_URL}`,{dbName: 'curobrain'}).then(()=>{
     console.log('Connection to mongoDB database successfully establish')
 }).catch((err)=>{
     console.log(err)
