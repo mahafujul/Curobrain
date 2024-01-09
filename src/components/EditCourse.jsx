@@ -6,7 +6,7 @@ import { useSetRecoilState,useRecoilState,useRecoilValue } from 'recoil';
 
 import { courseState } from '../store/atoms/course';
 import { courseDescription, courseImg, courseIsLoading, courseTitle } from '../store/selectors/course';
-import { useRef } from 'react';
+import Loading from '../components/index';
 
 function EditCourse(){
     const id = useParams('courseId');
@@ -35,7 +35,7 @@ function EditCourse(){
 
     if(isLoading){
         return(
-            <></>
+            <Loading/>
         )
     }
 

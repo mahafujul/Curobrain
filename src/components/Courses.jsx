@@ -2,11 +2,12 @@ import React from "react";
 import { useEffect,useState } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 
-import {Course} from '../components/index'
+import {Course,Loading} from '../components/index'
 
 
 function Courses(){
     const [courses, setCourses] = useState([]);
+    const [loading, setLoading] = useState(true)
     console.log(import.meta.env.BASE_URL)
     useEffect(()=>{
         fetch(`${import.meta.env.VITE_BASE_URL}/admin/courses`,{
@@ -18,8 +19,15 @@ function Courses(){
             return res.json();
         }).then((data)=>{
             setCourses(data.courses);
+            setLoading(false);
         })
     },[])
+
+    if(loading){
+        return(
+            <Loading/>
+        )
+    }
 
     return(
         <Grid style={{padding:30, display:'flex', paddingTop:'100px'}} container spacing={{ xs: 3, md: 3, lg:2 }} columns={{ xs: 2, sm: 8, md: 12, lg:12, xl:12}}>
