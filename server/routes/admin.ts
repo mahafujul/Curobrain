@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import authentication from'../middleware/authentication';
 import {Admin, Course} from '../db/index';
 import cors from 'cors';
+import {z} from 'zod'
 const bodyParser = require('body-parser');
 
 const route = express.Router();
@@ -11,10 +12,20 @@ route.use(cors())
 
 route.use(bodyParser.json());
 
+//Input validation for SignUp Input
+const signupInput = z.object({
+    username: z.string().min(1).max(20).email(),
+    password: z.string().min(6).max(20)
+}).strict()
 
 route.post('/signup',async (req,res)=>{
     //logic to ceate new admin
-    const {username, password} = req.body ;
+    const parsedInput = signupInput.safeParse(req.body)
+    if(!parsedInput.success){
+        return res.status(411).json({error: parsedInput.error});
+    }
+    const username = parsedInput.data.username;
+    const password = parsedInput.data.password;
     if(username&&password){
         const isAdminExist = await Admin.findOne({username});
         if(!isAdminExist){
@@ -69,7 +80,7 @@ route.get('/courses',authentication, async (req, res)=>{
     //logic to get all courses
     try{
         const courses = await Course.find({});
-        res.json({courses});
+        res.json({courses, message: "You've fetched all courses successfully."});
     }catch(err){
         console.log(err);
     }
