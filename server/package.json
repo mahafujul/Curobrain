@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./dist/index.js"
+    "dev": "nodemon ./dist/index.js",
+    "start:full": "tsc && rm -rf public && mkdir public && cd .. && pnpm run build && cp -r dist/* ./server/public && cd ./server && pm2 kill && pm2 start dist/index.js"
   },
   "keywords": [],
   "author": "",
