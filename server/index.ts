@@ -5,6 +5,8 @@ import userRoute from './routes/user';
 import authentication from './middleware/authentication';
 import dotenv from 'dotenv';
 import { connectDB } from './db/connect';
+const path = require('path');
+
 
 dotenv.config();
 const app = express();
@@ -23,7 +25,7 @@ app.get('/me',authentication, (req, res)=>{
 
 app.use(express.static("public"));
 app.use("/*",(req,res)=>{
-    res.sendFile(__dirname+'../public/index.html')
+    res.sendFile(path.join(__dirname,'..','public', 'index.html'))
 })
 
 app.listen(port,()=>{
