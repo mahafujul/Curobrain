@@ -36,8 +36,22 @@ Curobrain is aimed at providing an efficient platform for managing online learni
     ```bash
     npm install
     ```
+3. **Populate .env file**
 
-3. **Run the Application:**
+    For both the frontend and backend, navigate to their respective directories and follow .env.example file for referance and put respictive credentials and past it in to .env file:
+
+    ```bash
+    vi .env
+    ```
+4. **Transpile TS to JS**
+
+    navigate to the server's root directory and run the below command to transpite that TS code to js and obtained dist folder
+
+    ```bash
+    tsc
+    ```
+
+5. **Run the Application:**
 
     - **Frontend:**
     
@@ -49,7 +63,7 @@ Curobrain is aimed at providing an efficient platform for managing online learni
     - **Backend:**
     
       ```bash
-      cd server
+      cd server/dist
       node index.js
       ```
 
