@@ -38,20 +38,20 @@ Curobrain is aimed at providing an efficient platform for managing online learni
     ```
 3. **Populate .env file**
 
-    For both the frontend and backend, navigate to their respective directories and follow .env.example file for referance and put respictive credentials and past it in to .env file:
+    For both the frontend and backend, navigate to the appropriate directories and using the .env.example file as a guide. Enter the appropriate credentials and paste them into the.env file:
 
     ```bash
-    vi .env
+    cp .env.example .env
     ```
-4. **Transpile TS to JS**
+5. **Transpile TS to JS**
 
-    navigate to the server's root directory and run the below command to transpite that TS code to js and obtained dist folder
+    navigate to the server's root directory and run the below command to transpile that TS code to js and obtain dist folder
 
     ```bash
     tsc
     ```
 
-5. **Run the Application:**
+6. **Run the Application:**
 
     - **Frontend:**
     
